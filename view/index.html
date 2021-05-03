@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/index.css">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>나눔마트 주문서</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="banner"></div>
+            <h3>원협 중매인 11번 직매장 농축산물 직거래 나눔마트</h3>
+            <form action="/order" method="post">
+                <script type="text/javascript">
+                
+                </script>
+                <h5>주문자</h5>
+                <br/>
+                 <p>입금자 성함으로 적어주세요</p>
+                 <input type="text" name="name" placeholder="(필) 주문자명" class="name" required><br/>
+                 <input type="text" name="phone" placeholder="(필) 전화번호" class="phone" numberOnly required><br/><br/>
+                <hr>
+                <h5>수취인</h5><br>
+                <p>농협 계좌 000-0000-0000-00 홍길동</p>
+                 <p>농협 계좌 000-0000-0000-00 홍길동2</p>
+                 <input type="button" value="동일" class="copy_btn"><br/>
+                 <input type="text" name="pick_name" placeholder="(필) 수취인명" class="pick_name" required><br/>
+                 <input type="text" name="pick_phone" placeholder="(필) 전화번호" class="pick_phone" numberOnly required><br/>
+                 <p>'우편번호'를 먼저 클릭하시고 도로명신주소나 구주소를 찾을 수 있어요</p>
+                 <input type="text" id="sample6_postcode" placeholder="우편번호" name="address" required required>
+                 <input type="button" onclick="sample6_execDaumPostcode()" class="sample6_btn" value="주소검색"><br/>
+                 <input type="text" id="sample6_address" placeholder="주소" name="address" required required><br/>
+                 <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address" required><br/>
+                 <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" name="address" ><br/>
+                 <hr>
+                 <h5>품목과 가격과 수량을 입력하세요. 위쪽 주소란에 동, 호수도 적었는지 다시한번 확인해주세요.</h5>
+                 <p>ex) 쌍화탕진액 36000원 2박스, 한라봉 3kg 17000원 1박스</p>
+                 <textarea name="product" id="" cols="30" rows="10" required></textarea>
+                <hr>
+                 <h5>개인정보 수집 및 이용 동의</h5>
+                 <p>농협 계좌 000-0000-0000-00 홍길동</p>
+                 <p>농협 계좌 000-0000-0000-00 홍길동2</p>
+                 <label for="privacy">
+                     <input type="radio" name="privacy"><span>동의 합니다.</span>
+                </label><br/>
+                <input type="submit" value="주문하기">
+             </form>
+             <script>
+                 $(function(){
+                     
+                    var copyBtn = $(".copy_btn");
+                    var name = $(".name");
+                    var phone = $(".phone");
+                    var pickName = $(".pick_name");
+                    var pickPhone = $(".pick_phone");
+
+                    $("input:text[numberOnly]").on("keyup", function() {
+                        $(this).val($(this).val().replace(/[^0-9]/g,""));
+                    });
+
+                    copyBtn.on("click", function(){
+                        pickName.val(name.val());
+                        pickPhone.val(phone.val());
+                    });
+
+                 });
+             </script>
+             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+             <script>
+                 function sample6_execDaumPostcode() {
+                     new daum.Postcode({
+                         oncomplete: function(data) {
+                             var addr = ''; 
+                             var extraAddr = ''; 
+                             if (data.userSelectedType === 'R') { 
+                                 addr = data.roadAddress;
+                             } else {
+                                 addr = data.jibunAddress;
+                             }
+             
+                             
+                             if(data.userSelectedType === 'R'){
+                                
+                                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                     extraAddr += data.bname;
+                                 }
+                              
+                                 if(data.buildingName !== '' && data.apartment === 'Y'){
+                                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                 }
+                                
+                                 if(extraAddr !== ''){
+                                     extraAddr = ' (' + extraAddr + ')';
+                                 }
+                                 
+                                 document.getElementById("sample6_extraAddress").value = extraAddr;
+                             
+                             } else {
+                                 document.getElementById("sample6_extraAddress").value = '';
+                             }
+             
+                             
+                             document.getElementById('sample6_postcode').value = data.zonecode;
+                             document.getElementById("sample6_address").value = addr;
+                             
+                             document.getElementById("sample6_detailAddress").focus();
+                         }
+                     }).open();
+                 }
+             </script>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.container {
+  width: 100%;
+}
+
+.container .box {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container .box .banner {
+  width: 100%;
+  height: 300px;
+  background: url("../img/banner.png") no-repeat center;
+}
+
+.container .box h3 {
+  font-size: 24px;
+  letter-spacing: -1px;
+  text-align: center;
+  margin: 30px 0 0;
+}
+
+.container .box form {
+  width: 30%;
+  margin: 50px auto;
+  border-top: 2px solid #444444;
+  background-color: white;
+}
+
+.container .box form input {
+  height: 30px;
+  margin: 5px 0;
+  padding: 0 10px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  outline: none;
+}
+
+.container .box form input[class="copy_btn"] {
+  width: 50px;
+  margin: 30px 0 0;
+  cursor: pointer;
+}
+
+.container .box form input[class="copy_btn"]:hover {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  background-color: #cccccc;
+}
+
+.container .box form #sample6_address,
+.container .box form #sample6_detailAddress {
+  width: 60%;
+}
+
+.container .box form .sample6_btn {
+  cursor: pointer;
+}
+
+.container .box form h5 {
+  margin: 20px 0 0;
+  color: #444444;
+  font-size: 18px;
+}
+
+.container .box form p {
+  font-size: 12px;
+  letter-spacing: -1px;
+  color: #444444;
+}
+
+.container .box form textarea {
+  width: 96%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  outline: none;
+}
+
+.container .box form label[for="privacy"] {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.container .box form label[for="privacy"] span {
+  width: 100px;
+  position: absolute;
+  top: 30%;
+  left: 4%;
+  font-size: 12px;
+}
+
+.container .box form input[type="submit"] {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.container .box form input[type="submit"]:hover {
+  background-color: #cccccc;
+  color: white;
+}
+
+.container .box form input:not(input[type="radio"]):focus,
+.container .box form textarea:focus {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-box-shadow: skyblue 0 0 10px;
+          box-shadow: skyblue 0 0 10px;
+  border: 1px solid skyblue;
+}
+
+@media (max-width: 1100px) {
+  .container .box form {
+    width: 80%;
+  }
+  .container .box form label[for="privacy"] span {
+    left: 6%;
+  }
+}
